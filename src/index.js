@@ -6,13 +6,19 @@ import { Router, browserHistory } from 'react-router';
 import reducers from './reducers';
 import routes from './routes';
 import promise from 'redux-promise';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-const createStoreWithMiddleware = applyMiddleware(
-  promise
-)(createStore);
+const store = createStore(reducers, composeWithDevTools(
+  applyMiddleware(promise)
+));
+
+// const createStoreWithMiddleware = applyMiddleware(
+//   promise
+// )(createStore);
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  // <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={store}>
     <Router history={browserHistory} routes={routes}/>
   </Provider>
   , document.querySelector('.container'));
