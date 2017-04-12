@@ -5,11 +5,12 @@ import { createStore, applyMiddleware } from 'redux';
 import { Router, browserHistory } from 'react-router';
 import reducers from './reducers';
 import routes from './routes';
-import promise from 'redux-promise';
+// import promise from 'redux-promise';
+import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 const store = createStore(reducers, composeWithDevTools(
-  applyMiddleware(promise)
+  applyMiddleware(thunk)
 ));
 
 // const createStoreWithMiddleware = applyMiddleware(
